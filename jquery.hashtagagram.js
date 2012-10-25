@@ -8,7 +8,7 @@ $.fn.hashtagagram = function(options){
 		tag_name: 'babes', //the tag name
 		enable_cache: false, //Enable or Disable cache
 		count: 6, // number of photos
-		cache_duration: 1/12,//Number of days
+		cache_duration: 1,//Number of days
 		cookie_name: 'CachedInstagramPhotos'
 	};
 	
