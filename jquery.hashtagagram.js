@@ -5,10 +5,10 @@ $.fn.hashtagagram = function(options){
 		thumb_dimension:110,
 		success:ProcessData,
 		load_cookie_result:LoadResultsFromCookie,
-		tag_name: 'babes', //the tag name
-		enable_cache: false, //Enable or Disable cache
-		count: 6, // number of photos
-		cache_duration: 1,//Number of days
+		tag_name: 'babes',
+		count: 6,
+		enable_cache: false,
+		cache_duration: 1,
 		cookie_name: 'CachedInstagramPhotos'
 	};
 	
