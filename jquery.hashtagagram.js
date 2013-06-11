@@ -9,7 +9,11 @@ $.fn.hashtagagram = function(options){
 		count: 6,
 		enable_cache: false,
 		cache_duration: 1,
-		cookie_name: 'CachedInstagramPhotos'
+		cookie_name: 'CachedInstagramPhotos',
+		show_likes: true,
+		show_comments: true,
+		show_labels: true,
+		meta_class: 'insta-meta'
 	};
 	
 	var self = $(this);
@@ -45,13 +49,39 @@ $.fn.hashtagagram = function(options){
 	function ProcessData(response){
 		if(response != null){
 			var ul = $('<ul/>');
+			console.log(response.data);
 			$(response.data).each(function(index,obj){
 				if(index == defaults.count)
 					return false;
+					
 				var link = $('<a/>'), image = $('<img/>'), li = $('<li/>');
-				image.attr({'src': obj.images.thumbnail.url,'width':defaults.thumb_dimension,'height': defaults.thumb_dimension});
+				
+				if(defaults.show_likes || defaults.show_comments)
+					var meta = $('<div class="'+defaults.meta_class+'">');
+					
+				if(defaults.show_likes)
+					var likes = $('<div class="like-count">');
+					if(defaults.show_labels){
+						likes.html(obj.likes.count+' likes');
+					}else{
+						likes.html(obj.likes.count);
+					}
+					likes.appendTo(meta);
+					
+				if(defaults.show_comments)	
+					var comments = $('<div class="comment-count">');
+					if(defaults.show_labels){
+						comments.html(obj.comments.count+' comments');
+					}else{
+						comments.html(obj.comments.count);
+					}
+					comments.appendTo(meta);
+					
+				image.attr({'src': obj.images.low_resolution.url,'width':defaults.thumb_dimension,'height': defaults.thumb_dimension});
 				link.attr('href',obj.link);
 				image.appendTo(link);
+				if(defaults.show_likes || defaults.show_comments)
+					meta.appendTo(link);
 				link.appendTo(li);
 				ul.append(li);
 			});
