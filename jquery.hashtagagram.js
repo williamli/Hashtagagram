@@ -1,8 +1,10 @@
+// Version 1.0.1
+
 (function($){
 $.fn.hashtagagram = function(options){
 	var defaults = {
 		client_id:'000000000000000000000000',
-		thumb_dimension:110,
+		thumb_dimension:150,
 		success:ProcessData,
 		load_cookie_result:LoadResultsFromCookie,
 		tag_name: 'babes',
